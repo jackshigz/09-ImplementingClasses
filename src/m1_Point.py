@@ -6,7 +6,7 @@ Authors: David Mutchler, Vibha Alangar, Dave Fisher, Amanda Stouder,
          their colleagues and Haoran Shi.
 """  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
-
+import math
 def main():
     """ Calls the   TEST   functions in this module. """
     run_test_init()
@@ -49,6 +49,8 @@ class Point(object):
         self.x = a
         self.y = b
         self.rem = 0
+        self.start_x = a
+        self.start_y = b
 
     def __repr__(self):
         return "Point({},{})".format(self.x,self.y)
@@ -71,6 +73,17 @@ class Point(object):
     def get_number_of_moves_made(self):
         return self.rem
 
+    def get_distance_from(self,point):
+        dx = point.x - self.x
+        dy = point.y - self.y
+        distance = math.sqrt(dx**2 + dy**2)
+        return distance
+
+    def get_distance_from_start(self):
+        dx = self.start_x - self.x
+        dy = self.start_y - self.y
+        distance = math.sqrt(dx**2 + dy**2)
+        return distance
 def run_test_init():
     """
     Tests the   __init__   method of the Point class.
@@ -697,8 +710,46 @@ def run_test_get_distance_from():
         print('Expected p2 to p4: 9.0')
         print('Actual   p2 to p4:', p2.get_distance_from(p4))
     """
+    p1 = Point(1, 5)
+    p2 = Point(10, 5)
+    p3 = Point(13, 9)
+
+    print()
+    print('Expected p1 to p2: 9.0')
+    print('Actual   p1 to p2:', p1.get_distance_from(p2))
+
+    print()
+    print('Expected p2 to p3: 5.0')
+    print('Actual   p2 to p3:', p2.get_distance_from(p3))
+    print('Expected p3 to p2: 5.0')
+    print('Actual   p3 to p2:', p3.get_distance_from(p2))
+
+    print()
+    print('Expected p1 to p3: about 12.65')
+    print('Actual   p1 to p3:', p1.get_distance_from(p3))
+    print('Expected p3 to p1: about 12.65')
+    print('Actual   p3 to p1:', p3.get_distance_from(p1))
+
+    print()
+    print('Expected p1 to p1: 0.0')
+    print('Actual   p1 to p1:', p1.get_distance_from(p1))
+    print('Expected p2 to p2: 0.0')
+    print('Actual   p2 to p2:', p2.get_distance_from(p2))
+    print('Expected p3 to p3: 0.0')
+    print('Actual   p3 to p3:', p3.get_distance_from(p3))
+
+    p4 = p1.clone()
+    print()
+    print('Expected p1 to p4: 0.0')
+    print('Actual   p1 to p4:', p1.get_distance_from(p4))
+    print('Expected p4 to p1: 0.0')
+    print('Actual   p4 to p1:', p4.get_distance_from(p1))
+    print('Expected p4 to p2: 9.0')
+    print('Actual   p4 to p2:', p4.get_distance_from(p2))
+    print('Expected p2 to p4: 9.0')
+    print('Actual   p2 to p4:', p2.get_distance_from(p4))
     # --------------------------------------------------------------------------
-    # TODO: 9.  Follow the same instructions as in _TODO_ 3 above,
+    # DONE: 9.  Follow the same instructions as in _TODO_ 3 above,
     #    but for the  get_distance_from  method specified above.
     # --------------------------------------------------------------------------
     print()
@@ -753,8 +804,37 @@ def run_test_get_distance_from_start():
         print('p2 from start to (1, 1), should be about 0.0')
         print('Actually is:', p2.get_distance_from_start())
     """
+    p1 = Point(20, 30)
+    p1.move_to(111, 222)
+    p1.move_by(10, 20)
+    p1.move_to(0, 0)
+    p1.move_to(21, 31)
+    print()
+    print('p1 from start to (21, 31), should be about 1.414')
+    print('Actually is:', p1.get_distance_from_start())
+
+    p1.move_by(29, 39)
+    print()
+    print('p1 from start to (50, 70), should be about 50.0')
+    print('Actually is:', p1.get_distance_from_start())
+
+    p2 = Point(1, 1)
+    print()
+    print('p2 from start to (1, 1), should be about 0.0')
+    print('Actually is:', p2.get_distance_from_start())
+
+    p2.move_to(11, 1)
+    print()
+    print('p2 from start to (11, 1), should be about 10.0')
+    print('Actually is:', p2.get_distance_from_start())
+
+    p2.move_to(999, 999)
+    p2.move_to(1, 1)
+    print()
+    print('p2 from start to (1, 1), should be about 0.0')
+    print('Actually is:', p2.get_distance_from_start())
     # --------------------------------------------------------------------------
-    # TODO: 10.  Follow the same instructions as in _TODO_ 3 above,
+    # DONE: 10.  Follow the same instructions as in _TODO_ 3 above,
     #    but for the  get_distance_from_START  method specified above.
     # --------------------------------------------------------------------------
     print()
