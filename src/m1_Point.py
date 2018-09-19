@@ -3,7 +3,7 @@ A simple   Point   class.
 NOTE: This is NOT rosegraphics -- it is your OWN Point class.
 
 Authors: David Mutchler, Vibha Alangar, Dave Fisher, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
+         their colleagues and Haoran Shi.
 """  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 
@@ -27,7 +27,7 @@ def main():
 ################################################################################
 
 # ------------------------------------------------------------------------------
-# TODO: 2.          With your instructor, READ THE INSTRUCTIONS in
+# DONE: 2.          With your instructor, READ THE INSTRUCTIONS in
 # TODO (continued)  in file  m0_INSTRUCTIONS.txt, asking questions as needed.
 #
 # TODO (continued): Then implement a class called   Point that has NO METHODS
@@ -44,6 +44,16 @@ def main():
 # to have additional side effects as needed by it and/or other methods.
 ################################################################################
 
+class Point(object):
+    def __init__(self,a,b):
+    self.x = a
+    self.y = b
+
+    def __repr__(self):
+        return "Point((),())",format(self.x,self.y)
+
+    def clone(selfself):
+        return Point(self.x,self.y)
 
 def run_test_init():
     """
@@ -91,6 +101,24 @@ def run_test_init():
         print('Expected for p2: 100 -40')
         print('Actual for p2:  ', p2.x, p2.y)
     """
+    p1 = Point(30, 18)
+    print()
+    print('Expected for p1: 30 18')
+    print('Actual for p1:  ', p1.x, p1.y)
+
+    p2 = Point(100, -40)
+    print()
+    print('Expected for p2: 100 -40')
+    print('Actual for p2:  ', p2.x, p2.y)
+    print('Expected for p1: 30 18')
+    print('Actual for p1:  ', p1.x, p1.y)
+
+    p1.y = 999
+    print()
+    print('Expected for p1: 30 999')
+    print('Actual for p1:  ', p1.x, p1.y)
+    print('Expected for p2: 100 -40')
+    print('Actual for p2:  ', p2.x, p2.y)
     # --------------------------------------------------------------------------
     # TODO: 3.
     #   a. Read the above specification of the   __init__   method.
@@ -163,6 +191,24 @@ def run_test_repr():
         print('Expected for p2: Point(100, -40)')
         print('Actual for p2:  ', p2)
     """
+    p1 = Point(30, 18)
+    print()
+    print('Expected for p1: Point(30, 18)')
+    print('Actual for p1:  ', p1)
+
+    p2 = Point(100, -40)
+    print()
+    print('Expected for p2: Point(100, -40)')
+    print('Actual for p2:  ', p2)
+    print('Expected for p1: Point(30, 18)')
+    print('Actual for p1:  ', p1)
+
+    p1.y = 999
+    print()
+    print('Expected for p1: Point(30, 999)')
+    print('Actual for p1:  ', p1)
+    print('Expected for p2: Point(100, -40)')
+    print('Actual for p2:  ', p2)
     # --------------------------------------------------------------------------
     # TODO: 4.  Follow the same instructions as in _TODO_ 3 above,
     #           but for the  __repr__  method specified above.
@@ -224,8 +270,43 @@ def run_test_clone():
         print('Expected for p3: Point(777, 555)')
         print('Actual for p3:  ', p3)
    """
+    p1 = Point(10, 8)
+    print()
+    print('Expected for p1: Point(10, 8)')
+    print('Actual for p1:  ', p1)
+
+    p2 = p1.clone()
+    p3 = p2.clone()
+    print()
+    print('Expected for p1: Point(10, 8)')
+    print('Actual for p1:  ', p1)
+    print('Expected for p2: Point(10, 8)')
+    print('Actual for p2:  ', p2)
+    print('Expected for p3: Point(10, 8)')
+    print('Actual for p3:  ', p3)
+
+    p1.x = 999
+    print()
+    print('Expected for p1: Point(999, 8)')
+    print('Actual for p1:  ', p1)
+    print('Expected for p2: Point(10, 8)')
+    print('Actual for p2:  ', p2)
+    print('Expected for p3: Point(10, 8)')
+    print('Actual for p3:  ', p3)
+
+    p1.y = 333
+    p2 = Point(11, 22)
+    p3.x = 777
+    p3.y = 555
+    print()
+    print('Expected for p1: Point(999. 333)')
+    print('Actual for p1:  ', p1)
+    print('Expected for p2: Point(11, 22)')
+    print('Actual for p2:  ', p2)
+    print('Expected for p3: Point(777, 555)')
+    print('Actual for p3:  ', p3)
     # --------------------------------------------------------------------------
-    # TODO: 5.  Follow the same instructions as in _TODO_ 3 above,
+    # DONE: 5.  Follow the same instructions as in _TODO_ 3 above,
     #           but for the  clone  method specified above.
     # --------------------------------------------------------------------------
     print()
