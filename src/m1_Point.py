@@ -51,6 +51,7 @@ class Point(object):
         self.rem = 0
         self.start_x = a
         self.start_y = b
+        self.travel = 0
 
     def __repr__(self):
         return "Point({},{})".format(self.x,self.y)
@@ -59,15 +60,22 @@ class Point(object):
         return Point(self.x,self.y)
 
     def move_to(self,x,y):
+        dx = x-self.x
+        dy = y-self.y
         self.x = x
         self.y = y
         self.rem = self.rem + 1
+        distance = math.sqrt(dx**2 + dy**2)
+        self.travel = self.travel + distance
+
         return "Point({},{})".format(self.x,self.y)
 
     def move_by(self,dx,dy):
         self.x = self.x + dx
         self.y = self.y + dy
         self.rem = self.rem+1
+        distance = math.sqrt(dx**2 + dy**2)
+        self.travel = self.travel + distance
         return "Point({},{})".format(self.x,self.y)
 
     def get_number_of_moves_made(self):
@@ -84,6 +92,10 @@ class Point(object):
         dy = self.start_y - self.y
         distance = math.sqrt(dx**2 + dy**2)
         return distance
+
+    def get_distance_traveled(self):
+        return self.travel
+
 def run_test_init():
     """
     Tests the   __init__   method of the Point class.
@@ -858,37 +870,36 @@ def run_test_get_distance_traveled():
 
     EXAMPLE: The following shows   get_distance_traveled   in action.
     You may also use this example to test this method.
-
-        p1 = Point(20, 30)
-        p1.move_to(21, 30)
-        p1.move_to(21, 38)
-        print()
-        print('Expected p1 has traveled 9.0')
-        print('Actual:', p1.get_distance_traveled())
-
-        p1.move_by(1, 1)
-        print()
-        print('Expected p1 has now traveled about 10.414')
-        print('Actual:', p1.get_distance_traveled())
-
-        p2 = Point(0, 0)
-        p3 = Point(100, 22)
-        p4 = Point(0, 555)
-        for k in range(100):
-            p2.move_by(0, k + 1)
-            p3.move_by(k + 1, 0)
-            p4.move_to(k + 1, 555)
-
-        print()
-        print('Expected p2 has now traveled', 101 * 50.0)
-        print('Actual:', p2.get_distance_traveled())
-        print('Expected p3 has now traveled', 101 * 50.0)
-        print('Actual:', p3.get_distance_traveled())
-        print('Expected p4 has now traveled 100.0')
-        print('Actual:', p4.get_distance_traveled())
     """
+    p1 = Point(20, 30)
+    p1.move_to(21, 30)
+    p1.move_to(21, 38)
+    print()
+    print('Expected p1 has traveled 9.0')
+    print('Actual:', p1.get_distance_traveled())
+
+    p1.move_by(1, 1)
+    print()
+    print('Expected p1 has now traveled about 10.414')
+    print('Actual:', p1.get_distance_traveled())
+
+    p2 = Point(0, 0)
+    p3 = Point(100, 22)
+    p4 = Point(0, 555)
+    for k in range(100):
+        p2.move_by(0, k + 1)
+        p3.move_by(k + 1, 0)
+        p4.move_to(k + 1, 555)
+
+    print()
+    print('Expected p2 has now traveled', 101 * 50.0)
+    print('Actual:', p2.get_distance_traveled())
+    print('Expected p3 has now traveled', 101 * 50.0)
+    print('Actual:', p3.get_distance_traveled())
+    print('Expected p4 has now traveled 100.0')
+    print('Actual:', p4.get_distance_traveled())
     # --------------------------------------------------------------------------
-    # TODO: 11.  Follow the same instructions as in _TODO_ 3 above,
+    # DONE: 11.  Follow the same instructions as in _TODO_ 3 above,
     #    but for the  get_distance_traveled  method specified above.
     # --------------------------------------------------------------------------
     print()
